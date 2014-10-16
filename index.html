@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src"https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js" type="text/javascript"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js" type="text/javascript"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+  <script src="scripts/app.js" type="text/javascript"></script>
   <title>Playlistr</title>
 </head>
-<body>
-  <h2>Playlistr <small>collaborative playlists </small></h2>
+<body ng-app='Playlistr'>
+  <h2>Playlistr <small>collaborative playlists</small></h2>
+  <div ng-view>
+    <div ng-controller='PlaylistsController as playlist'>
+      <div ng-repeat='song in playlist.songs'>
+        <h3>{{song.artist}}</h3>
+        <p>{{song.title}}</p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
