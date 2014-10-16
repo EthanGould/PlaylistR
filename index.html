@@ -9,10 +9,12 @@
 <body ng-app='Playlistr'>
   <h2>Playlistr <small>collaborative playlists</small></h2>
   <div ng-view>
-    <div ng-controller='PlaylistsController as playlist'>
-      <div ng-repeat='song in playlist.songs'>
-        <h3>{{song.artist}}</h3>
-        <p>{{song.title}}</p>
+    <div ng-controller='PlaylistsController as playlistsCtrl'>
+      <div ng-repeat='playlist in playlistsCtrl.playlists'>
+        <h3>{{playlist.name}}</h3>
+        <div ng-repeat='song in playlist.songs'>
+          <p>{{song.artist}}{{song.title}}</p>
+        </div>
       </div>
     </div>
   </div>
