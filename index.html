@@ -4,17 +4,28 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js" type="text/javascript"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
   <script src="scripts/app.js" type="text/javascript"></script>
+  <script src="scripts/angular-route.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/main.css" type="text/css">
   <title>Playlistr</title>
 </head>
 <body ng-app='Playlistr'>
-  <h2>Playlistr <small>collaborative playlists</small></h2>
-  <div ng-view>
-    <div ng-controller='PlaylistsController as playlistsCtrl'>
-      <div ng-repeat='playlist in playlistsCtrl.playlists'>
-        <h3>{{playlist.name}}</h3>
-        <div ng-repeat='song in playlist.songs'>
-          <p>{{song.artist}} -  {{song.title}}</p>
+  <div class='container'>
+    <h2 class='header-title'>Playlistr <small>collaborative playlists</small></h2>
+    <div class='row'>
+      <div class='col-sm-4' ng-controller='PlaylistsController as playlistsCtrl'>
+        <ul class='pl-list'>
+          <li ng-repeat='playlist in playlistsCtrl.playlists' class='pl-container panel panel-default'><a ng-href='#/playlists/{{playlist.link}}'><h5 class='pl-name'>{{playlist.name}}</h5></a></li>
+          <li class='pl-container panel panel-default'><h5 class='pl-name'>New Playlist</h5></li>
+        </ul>
+        <div class='pl-info well'>
+          <h5 class='pl-info__name'><u>{{getCurrentPlaylist()}}</u></h5>
+          <div class='pl-update btn btn-warning'>Update this list</div>
         </div>
+      </div>
+
+      <div class='col-sm-8' ng-view>
+        <!--Ajaxed Content-->
       </div>
     </div>
   </div>
