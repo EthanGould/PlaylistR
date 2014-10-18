@@ -1,17 +1,13 @@
 var app = angular.module('Playlistr', ['ngRoute']);
 
-app.config(['$routeProvider', function($routeProvider) {
+app.config(['$routeProvider', function($routeProvider, $routeParams) {
   $routeProvider
-    .when('/playlists/pump-up-tunz', {
-      templateUrl: 'scripts/templates/pump-up-tunz.html',
-      controller: 'PlaylistsController'
+    .when('/playlists/:name', {
+      controller: 'PlaylistsController',
+      templateUrl: function(params){ return 'scripts/templates/' + params.name + '.html'}
     })
-    .when('/playlists/sunday-night-slow-jamz', {
-      templateUrl: 'scripts/templates/sunday-night-slow-jamz.html',
-      controller: 'PlaylistsController'
-    })
-    .when('/playlists/workout-music', {
-      templateUrl: 'scripts/templates/workout-music.html',
+    .when('/playlist/new', {
+      templateUrl: 'scripts/templates/new-playlist.html',
       controller: 'PlaylistsController'
     })
     .otherwise({
