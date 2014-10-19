@@ -15,9 +15,16 @@ app.config(['$routeProvider', function($routeProvider, $routeParams) {
     });
 }]);
 
-app.controller('PlaylistsController', function(){
+app.directive('conversation', function(){
+  return {
+    restrict: 'E',
+    templateUrl: 'scripts/templates/convo.html'
+  };
+});
 
-  this.playlists = [
+app.controller('PlaylistsController', ['$scope', function(scope) {
+
+  scope.playlists = [
     {id: 0, name: 'Pump Up Tunz', link: 'pump-up-tunz',songs: [
         {artist: 'Wiz Khalifa', title: 'Black and Yellow'},
         {artist: 'Mac Miller', title: 'Frozen Pizza and Koolaid'}
@@ -34,4 +41,14 @@ app.controller('PlaylistsController', function(){
       ]
     }
   ];
-});
+
+  scope.createPlaylist = function() {
+    scope.playlists.push(
+      {id: 3, name: 'Workout Music', link: 'workout-music',songs: [
+        {artist: 'Emeniem', title: 'Collapse'},
+        {artist: '50 Cent', title: 'Heat'}]
+      }
+    );
+  };
+
+}]);
