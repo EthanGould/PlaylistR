@@ -14,14 +14,19 @@
   <div class='container'>
     <h2 class='header-title'>Playlistr <small>collaborative playlists</small></h2>
     <div class='row'>
-      <div class='col-sm-4' ng-controller='PlaylistsController as playlistsCtrl'>
+      <div class='col-sm-3' ng-controller='PlaylistsController as playlistsCtrl'>
         <ul class='pl-list'>
-          <li ng-repeat='playlist in playlistsCtrl.playlists' class='pl-container panel panel-default'><a ng-href='#/playlists/{{playlist.link}}'><h5 class='pl-name'>{{playlist.name}}</h5></a></li>
+          <li ng-repeat='playlist in playlists' class='pl-container panel panel-default'><a ng-href='#/playlists/{{playlist.link}}'><h5 class='pl-name'>{{playlist.name}}</h5></a></li>
           <li class='pl-container panel panel-default'><a href='#/playlist/new'><h5>New Playlist</h5></a></li>
         </ul>
-        <div class='pl-info well'>
-          <u><h5 ng-model='newPlaylistTitle' class='pl-info__name'>{{newPlaylistTitle}}</h5></u>
-          <div class='pl-update btn btn-warning'>Update this list</div>
+        <div class='pl-info panel panel-default'>
+          <div class='panel-heading'>
+            <h5>current Playlist</h5>
+          </div>
+          <div class='panel-body'>
+            <h5 ng-model='newPlaylistTitle' class='pl-info__name'>{{newPlaylistTitle}}</h5>
+            <div class='pl-update btn btn-warning'>Update this list</div>
+          </div>
         </div>
       </div>
 
