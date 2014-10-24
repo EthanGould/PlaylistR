@@ -1,3 +1,5 @@
-<div ng-repeat='songs in playlists.current'>
-	<h3>{{song.artist}} - {{song.title}}</h3>
+<div>
+	<div ng-repeat='song in currentPlaylist.songs'>
+		<h4>{{song.artist}} - {{song.title}}</h4>
+	</div>
 </div>

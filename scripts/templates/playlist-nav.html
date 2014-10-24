@@ -1,0 +1,39 @@
+<div class='container' ng-controller='MainController' >
+  <h2 class='header-title'>Playlistr <small>collaborative playlists</small></h2>
+  <div class='row'>
+    <div class='col-sm-3 col-md-3'>
+
+      <div class='user-info panel panel-default'>
+        <div class='promo-header panel-heading'>
+          <h5 class='pl-info__heading'>Powered by <span><img style='height:30px;width:50px;padding-left:5px;' src='http://upload.wikimedia.org/wikipedia/fr/b/bb/SoundCloud_logo.png'></span></h5>
+        </div>
+
+        <div class='panel-body'>
+          <h5 class='user-info__name'>{{currentUser.name}}</h5>
+          <img src='https://www.marqueed.com/assets/default_user-9fa815e2c71f8bad4f3643c9546ac4aa.png' class="user-pic" style='position:relative;height:100%; width: 100%;'>
+        </div>
+      </div>
+
+      <!-- side nav list of playlist -->
+      <ul class='pl-list'>
+        <li class='pl-container panel panel-default' ng-repeat='pl in playlists.getPlaylists()'><a href='#' ng-click='playlists.activate(pl)'><h5 class='pl-name'>{{pl.name}}</h5></a></li>
+        <li class='pl-container panel panel-default'><a href='#/playlist/new'><h5>New Playlist</h5></a></li>
+      </ul>
+
+      <div class='pl-info panel panel-default'>
+        <div class='panel-heading'>
+          <h5 class='pl-info__heading'>current Playlist</h5>
+        </div>
+
+        <div class='panel-body'>
+          <h5 class='pl-info__name'>{{playlists.getCurrent().name}}</h5>
+          <div class='pl-update btn btn-warning'>Update this list</div>
+        </div>
+      </div>
+    </div>
+
+    <div class='col-sm-8 col-md-7' ng-view>
+      <!--Ajaxed Content-->
+    </div>
+  </div>
+</div>

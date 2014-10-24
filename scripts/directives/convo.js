@@ -1,6 +1,6 @@
-app.directive('playlistConvo', function(){
-	return {
-		restrict: 'E',
-		templateUrl: 'convo.html'
-	};
-});
+// app.directive('playlistConvo', function(){
+// 	return {
+// 		restrict: 'E',
+// 		templateUrl: 'convo.html'
+// 	};
+// });
