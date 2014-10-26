@@ -1,27 +1,24 @@
-var app = angular.module('Playlistr', ['ngRoute']);
+var app = angular.module('Playlistr', ['ngRoute', 'ui.router']);
 
-app.config(['$routeProvider', function($routeProvider) {
-  $routeProvider
-    .when('/playlists/:name', {
-      //controller: 'PlaylistsController',
-      templateUrl: function(params){ return 'scripts/templates/' + params.name + '.html'}
+app.config(function($stateProvider, $urlRouterProvider) {
+  //
+  // For any unmatched url, redirect to /state1
+  $urlRouterProvider.otherwise("/playlists");
+  //
+  // Now set up the states
+  $stateProvider
+    .state('playlist-nav', {
+      url: "/playlists",
+      templateUrl: "scripts/templates/playlist-nav.html"
     })
-    .when('/playlist/new', {
-      templateUrl: 'scripts/templates/new-playlist.html',
-      //controller: 'PlaylistsController'
+    .state('playlist-nav.playlist', {
+      url: '/:playlist',
+      templateUrl: 'scripts/templates/playlist.html'
     })
-    .otherwise({
-      redirectTo: '/'
-    });
-}]);
-
-app.directive('conversation', function(){
-  return {
-    restrict: 'E',
-    templateUrl: 'scripts/templates/convo.html',
-    controller: 'PlaylistsController'
-
-  };
+    .state('playlist-nav.new', {
+      url: 'playlists.new',
+      templateUrl: 'scripts/templates/new-playlist.html'
+    })
 });
 
 var playlistsFromREST = [
@@ -43,6 +40,13 @@ var playlistsFromREST = [
   }
 ];
 
+app.directive('conversation', function(){
+  return {
+    restrict: 'E',
+    templateUrl: 'scripts/templates/conversation.html'
+  };
+});
+
 
 var playlistControllerFactory = {
 
@@ -57,7 +61,7 @@ var playlistControllerFactory = {
 
           if (playlists[i] === playlist) {
             current = playlist;
-            console.log(current);
+            console.log('MainCtrl current pl', current);
           }
         }
       },
@@ -78,6 +82,7 @@ var playlistControllerFactory = {
 
       getCurrent: function() {
         return current;
+        console.log(current);
       },
 
       addPlaylist: function(playlist) {
@@ -111,8 +116,4 @@ app.controller('MainController', ['$scope', function($scope) {
   $scope.selectPlaylist = function() {
     console.log("PLAYLIST: ", this);
   };
-}]);
-
-app.controller('PlaylistsController', ['$scope', function($scope) {
-
 }]);

@@ -1,6 +1,7 @@
-// app.directive('playlistConvo', function(){
+// angular.module('Playlistr', [])
+// .directive('conversation', function(){
 // 	return {
 // 		restrict: 'E',
-// 		templateUrl: 'convo.html'
+// 		template: '../templates/convo.html'
 // 	};
 // });
