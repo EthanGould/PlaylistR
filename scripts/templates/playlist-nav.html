@@ -16,7 +16,7 @@
 
       <!-- side nav list of playlist -->
       <ul class='pl-list'>
-        <li class='pl-container panel panel-default' ng-repeat='pl in playlists.getPlaylists()'><a ui-sref='playlist-nav.playlist' ng-click='playlists.activate(pl)'><h5 class='pl-name'>{{pl.name}}</h5></a></li>
+        <li class='pl-container panel panel-default' ng-repeat='pl in playlists.getPlaylists()'><a ui-sref='playlist-nav.playlist' ng-click='playlists.activate(pl);playlists.setCurrent(pl)'><h5 class='pl-name'>{{pl.name}}</h5></a></li>
         <li class='pl-container panel panel-default'><a ui-sref='playlist-nav.new'><h5>New Playlist</h5></a></li>
       </ul>
 
