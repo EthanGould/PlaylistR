@@ -81,6 +81,9 @@ var playlistControllerFactory = {
       },
 
       getCurrent: function() {
+        if (!current) {
+          return playlistsFromREST[0];
+        }
         return current;
         console.log(current);
       },
