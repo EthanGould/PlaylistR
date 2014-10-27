@@ -24,3 +24,23 @@
 .new-pl__title {
 	margin-bottom: 10px !important;
 }
+.conversation-container {
+	height: 550px;
+	overflow-y: scroll;
+}
+.sent-message {
+	position: relative;
+	margin-bottom: 15px;
+	max-height: 50px;
+}
+.song-artwork {
+	position: relative;
+	max-height: 50px;
+	width: 50px;
+}
+.song-info {
+	position: relative;
+	width: 70%;
+	margin-left: 20px;
+	display: inline;
+}
