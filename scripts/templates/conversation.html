@@ -1,11 +1,11 @@
 <div class="conversation-container well">
   <div ng-repeat='song in playlists.getCurrent().songs' class='sent-message'>
-    <img ng-src='{{song.artwork}}' class='song-artwork'><h4 class='song-info'>{{song.artist}} - {{song.title}}</h4>
+    <img ng-src='{{song.artwork}}' class='song-artwork'><p class='song-info'>{{song.artist}} - {{song.title}}</p>
   </div>
 </div>
 <div ng-controller='PlaylistContentController' class="input-group">
   <input ng-model='songUrl' type="text" class="song-input form-control">
   <span class="input-group-btn">
-    <button class="btn btn-success" ng-click='addSong(songUrl)' type="button">Sumbit</button>
+    <button class="btn btn-success" ng-click='addSong(songUrl, playlists.getCurrent())' type="button">Sumbit</button>
   </span>
 </div>

@@ -35,12 +35,13 @@
 }
 .song-artwork {
 	position: relative;
+	display: inline-block;
 	max-height: 50px;
-	width: 50px;
+	width: 10%;
 }
 .song-info {
 	position: relative;
+	display: inline-block;
 	width: 70%;
 	margin-left: 20px;
-	display: inline;
 }
