@@ -6,22 +6,19 @@ angular.module('Playlistr')
     client_id: clientId
   });
 
-  $scope.addSong = function(track_url) {
-    var currentPlaylist = playlistControllerFactory.create().getCurrent();
-    console.log(currentPlaylist);
+  $scope.addSong = function(track_url, playlist) {
     SC.get('/resolve', { url: track_url }, function(t) {
-      var artwork = t.artwork_url
-      var defaultArtwork = 'http://findnewjams.com/frontend/img/default-album-art.png'
+      var artwork = t.artwork_url;
+      var defaultArtwork = 'http://findnewjams.com/frontend/img/default-album-art.png';
       if (t.artwork_url === null) {
-        artwork = defaultArtwork
+        artwork = defaultArtwork;
       }
-      var artwork = t.artwork_url
       setTimeout( function(){
-        currentPlaylist.songs.push({artist: t.label_name, title: t.title, artwork: artwork})
+        playlist.songs.push({artist: t.label_name, title: t.title, artwork: artwork});
         $scope.$apply();
-      }, 100)
+      }, 10);
+      console.log(t);
     });
-    console.log(currentPlaylist);
     $('.song-input').val('');
-  }
+  };
 }]);
