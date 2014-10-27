@@ -1,6 +1,6 @@
 <div class="conversation-container well">
   <div ng-repeat='song in playlists.getCurrent().songs' class='sent-message'>
-    <img ng-src='{{song.artwork}}' class='song-artwork'><p class='song-info'>{{song.artist}} - {{song.title}}</p>
+    <img ng-controller='PlaylistContentController' ng-click='playSong(song)' ng-src='{{song.artwork}}' class='song-artwork'><p class='song-info'>{{song.artist}} - {{song.title}}</p>
   </div>
 </div>
 <div ng-controller='PlaylistContentController' class="input-group">

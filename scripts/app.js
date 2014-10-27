@@ -85,7 +85,6 @@ var playlistControllerFactory = {
           return playlistsFromREST[0];
         }
         return current;
-        console.log(current);
       },
 
       addPlaylist: function(playlist) {
@@ -110,13 +109,15 @@ app.controller('MainController', ['$scope', function($scope) {
 
   $scope.playlists = playlistControllerFactory.create();
 
-  // playlist : playlistsFromREST
   for (var i = 0; i < playlistsFromREST.length; i++) {
     $scope.playlists.addPlaylist(playlistsFromREST[i]);
   }
-  console.log($scope.playlists.getPlaylists())
 
   $scope.selectPlaylist = function() {
     console.log("PLAYLIST: ", this);
+  };
+
+  $scope.createPlaylist = function() {
+    alert('created playlist');
   };
 }]);

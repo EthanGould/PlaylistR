@@ -14,11 +14,25 @@ angular.module('Playlistr')
         artwork = defaultArtwork;
       }
       setTimeout( function(){
-        playlist.songs.push({artist: t.label_name, title: t.title, artwork: artwork});
+        playlist.songs.push({track_id: t.id, artist: t.label_name, title: t.title, artwork: artwork, isPlaying: false});
         $scope.$apply();
       }, 10);
       console.log(t);
+      console.log(playlist.songs[playlist.songs.length-1]);
     });
     $('.song-input').val('');
+  };
+
+  $scope.playSong = function(song) {
+    console.log('play song working', song);
+    SC.stream("/tracks/" + song.track_id, function(sound){
+      if(song.isPlaying) {
+        sound.stop();
+        song.isPlaying = false;
+      } else {
+        sound.play();
+        song.isPlaying = true;
+      }
+    });
   };
 }]);
