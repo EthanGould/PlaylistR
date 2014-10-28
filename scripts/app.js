@@ -23,17 +23,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 var playlistsFromREST = [
 
-  {name: 'Pump Up Tunz', link: 'pump-up-tunz', songs: [
+  {name: 'Pump Up Tunz', songs: [
       {artist: 'Wiz Khalifa', title: 'Black and Yellow', artwork: 'http://findnewjams.com/frontend/img/default-album-art.png'},
       {artist: 'Mac Miller', title: 'Frozen Pizza and Koolaid', artwork: 'http://findnewjams.com/frontend/img/default-album-art.png'}
     ]
   },
-  {name: 'Sunday Night Slow Jamz', link: 'sunday-night-slow-jamz', songs: [
+  {name: 'Sunday Night Slow Jamz', songs: [
       {artist: 'Michael Jackson', title: 'Thriller', artwork: 'http://findnewjams.com/frontend/img/default-album-art.png'},
       {artist: 'Outkast', title: 'Mrs. Jackson', artwork: 'http://findnewjams.com/frontend/img/default-album-art.png'}
     ]
   },
-  {name: 'Workout Music', link: 'workout-music', songs: [
+  {name: 'Workout Music', songs: [
       {artist: 'Emeniem', title: 'Collapse', artwork: 'http://findnewjams.com/frontend/img/default-album-art.png'},
       {artist: '50 Cent', title: 'Heat', artwork: 'http://findnewjams.com/frontend/img/default-album-art.png'}
     ]
@@ -88,13 +88,15 @@ var playlistControllerFactory = {
       },
 
       addPlaylist: function(playlist) {
+        var newPlaylist = {name: playlist, songs: []};
         playlist._activate = function() {
           this.activate(playlist);
         };
         playlist._remove = function(playlist) {
           this.remove(playlist);
         };
-        playlists.push(playlist);
+        playlists.unshift(newPlaylist);
+        console.log(playlists);
       },
 
       getPlaylists: function() {
@@ -117,7 +119,8 @@ app.controller('MainController', ['$scope', function($scope) {
     console.log("PLAYLIST: ", this);
   };
 
-  $scope.createPlaylist = function() {
-    alert('created playlist');
+  $scope.createPlaylist = function(name) {
+    $scope.playlists.addPlaylist(name);
+    $('.new-pl-name').val('');
   };
 }]);
