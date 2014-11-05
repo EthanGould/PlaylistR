@@ -88,7 +88,7 @@ var playlistControllerFactory = {
       },
 
       addPlaylist: function(playlist) {
-        var newPlaylist = {name: playlist, songs: []};
+        var newPlaylist = {name: playlist, songs: [], duration: 0, songCount: 0};
         playlist._activate = function() {
           this.activate(playlist);
         };
@@ -96,7 +96,6 @@ var playlistControllerFactory = {
           this.remove(playlist);
         };
         playlists.unshift(newPlaylist);
-        console.log(playlists);
       },
 
       getPlaylists: function() {
