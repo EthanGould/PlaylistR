@@ -15,10 +15,11 @@ angular.module('Playlistr')
       }
       setTimeout( function(){
         var songDuration = (t.duration/1000)/60;
-        var addDuration = parseFloat(parseFloat(songDuration).toFixed(2));
+        var addDuration = parseFloat(parseFloat(songDuration).toFixed(1));
         playlist.songs.push({track_id: t.id, artist: t.label_name, title: t.title, duration: songDuration, artwork: artwork, track_uri: t.uri});
         playlist.songCount += 1;
         playlist.duration += addDuration;
+        console.log(playlist.duration);
         $scope.$apply();
       }, 10);
       console.log(t);
@@ -26,3 +27,13 @@ angular.module('Playlistr')
     $('.song-input').val('');
   };
 }]);
+
+var showDetails = function() {
+  $('.song-details').slideToggle();
+};
+
+$(document).ready(function(){
+  $(document).on('click', '.song-actions', function(){
+    showDetails();
+  });
+});
