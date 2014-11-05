@@ -14,11 +14,14 @@ angular.module('Playlistr')
         artwork = defaultArtwork;
       }
       setTimeout( function(){
-        playlist.songs.push({track_id: t.id, artist: t.label_name, title: t.title, artwork: artwork, track_uri: t.uri});
+        var songDuration = (t.duration/1000)/60;
+        var addDuration = parseFloat(parseFloat(songDuration).toFixed(2));
+        playlist.songs.push({track_id: t.id, artist: t.label_name, title: t.title, duration: songDuration, artwork: artwork, track_uri: t.uri});
+        playlist.songCount += 1;
+        playlist.duration += addDuration;
         $scope.$apply();
       }, 10);
       console.log(t);
-      console.log(playlist.songs[playlist.songs.length-1]);
     });
     $('.song-input').val('');
   };
