@@ -23,21 +23,21 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 var playlistsFromREST = [
 
-  {name: 'Pump Up Tunz', songs: [
-      {artist: 'Wiz Khalifa', title: 'Black and Yellow', artwork: 'http://findnewjams.com/frontend/img/default-album-art.png'},
-      {artist: 'Mac Miller', title: 'Frozen Pizza and Koolaid', artwork: 'http://findnewjams.com/frontend/img/default-album-art.png'}
-    ]
-  },
-  {name: 'Sunday Night Slow Jamz', songs: [
-      {artist: 'Michael Jackson', title: 'Thriller', artwork: 'http://findnewjams.com/frontend/img/default-album-art.png'},
-      {artist: 'Outkast', title: 'Mrs. Jackson', artwork: 'http://findnewjams.com/frontend/img/default-album-art.png'}
-    ]
-  },
-  {name: 'Workout Music', songs: [
-      {artist: 'Emeniem', title: 'Collapse', artwork: 'http://findnewjams.com/frontend/img/default-album-art.png'},
-      {artist: '50 Cent', title: 'Heat', artwork: 'http://findnewjams.com/frontend/img/default-album-art.png'}
-    ]
-  }
+  // {name: 'Pump Up Tunz', songs: [
+  //     {artist: 'Wiz Khalifa', title: 'Black and Yellow', artwork: 'http://findnewjams.com/frontend/img/default-album-art.png'},
+  //     {artist: 'Mac Miller', title: 'Frozen Pizza and Koolaid', artwork: 'http://findnewjams.com/frontend/img/default-album-art.png'}
+  //   ]
+  // },
+  // {name: 'Sunday Night Slow Jamz', songs: [
+  //     {artist: 'Michael Jackson', title: 'Thriller', artwork: 'http://findnewjams.com/frontend/img/default-album-art.png'},
+  //     {artist: 'Outkast', title: 'Mrs. Jackson', artwork: 'http://findnewjams.com/frontend/img/default-album-art.png'}
+  //   ]
+  // },
+  // {name: 'Workout Music', songs: [
+  //     {artist: 'Emeniem', title: 'Collapse', artwork: 'http://findnewjams.com/frontend/img/default-album-art.png'},
+  //     {artist: '50 Cent', title: 'Heat', artwork: 'http://findnewjams.com/frontend/img/default-album-art.png'}
+  //   ]
+  // }
 ];
 
 app.directive('conversation', function(){
