@@ -18,6 +18,9 @@
 .pl-info {
 	text-align: center;
 }
+.pl-info__heading {
+	margin: 0;
+}
 .current-pl-body {
 	position: relative;
 }
