@@ -3,6 +3,9 @@
 	padding: 10px 10px;
 	list-style: none;
 }
+.pl-container h5 {
+	margin: 0;
+}
 .pl-container:hover {
 	background: rgba(100, 100, 100, 0.2);
 }
@@ -15,8 +18,30 @@
 .pl-info {
 	text-align: center;
 }
-.pl-info__name {
-	margin-bottom: 20px;
+.current-pl-body {
+	position: relative;
+}
+.current-pl__stats {
+	width: 100%;
+	border-bottom: 1px solid rgba(10, 10, 10, 0.2);
+	margin-bottom: 10px;
+}
+.current-pl__stats th {
+	text-align: center;
+}
+.current-pl {
+	width: 100%;
+	display: inline-block;
+}
+.current-pl__img {
+	float: left;
+	height: 50px;
+	width: 50px;
+	margin-right:15px;
+}
+.current-pl__name {
+	margin: 0;
+	float: left;
 }
 .convers-container {
 	height: 300px;
