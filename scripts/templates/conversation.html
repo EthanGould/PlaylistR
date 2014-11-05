@@ -1,11 +1,16 @@
-<div class="conversation-container well">
-  <div ng-repeat='song in playlists.getCurrent().songs' class='sent-message'>
-    <img ng-controller='PlaylistContentController' ng-click='playSong(song)' ng-src='{{song.artwork}}' class='song-artwork'><p class='song-info'>{{song.artist}} - {{song.title}}</p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="conversation-container well">
+      <div ng-repeat='song in playlists.getCurrent().songs' class='sent-message'>
+        <img ng-controller='PlaylistContentController' ng-click='playSong(song)' ng-src='{{song.artwork}}' class='song-artwork'><p class='song-info'>{{song.artist}} - {{song.title}}</p>
+      </div>
+      <!-- <audio src='https://soundcloud.com/zentrix/chris-liebing-pfirter-420-zentrix-remix' controls></audio> -->
+    </div>
+    <div ng-controller='PlaylistContentController' class="input-group">
+      <input ng-model='songUrl' type="text" class="song-input form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-success" ng-click='addSong(songUrl, playlists.getCurrent())' type="button">Sumbit</button>
+      </span>
+    </div>
   </div>
-</div>
-<div ng-controller='PlaylistContentController' class="input-group">
-  <input ng-model='songUrl' type="text" class="song-input form-control">
-  <span class="input-group-btn">
-    <button class="btn btn-success" ng-click='addSong(songUrl, playlists.getCurrent())' type="button">Sumbit</button>
-  </span>
 </div>
