@@ -1,11 +1,12 @@
 <div class='container' ng-controller='MainController' >
-  <h2 class='header-title'>Playlistr <small>collaborative playlists</small></h2>
+  <h2 class='header-title'>Playlistr <small>collaborative playlists</small><h4>Powered by <span><img style='height:30px;width:50px;padding-left:5px;' src='http://upload.wikimedia.org/wikipedia/fr/b/bb/SoundCloud_logo.png'></span></h4>
   <div class='row'>
     <div class='col-sm-3 col-md-3'>
 
       <div class='user-info panel panel-default'>
         <div class='promo-header panel-heading'>
-          <h5 class='pl-info__heading'>Powered by <span><img style='height:30px;width:50px;padding-left:5px;' src='http://upload.wikimedia.org/wikipedia/fr/b/bb/SoundCloud_logo.png'></span></h5>
+        <h5 class='pl-info__heading'>Ethan907</h5>
+<!--           <h5 class='pl-info__heading'>Powered by <span><img style='height:30px;width:50px;padding-left:5px;' src='http://upload.wikimedia.org/wikipedia/fr/b/bb/SoundCloud_logo.png'></span></h5> -->
         </div>
 
         <div class='panel-body'>
@@ -21,9 +22,24 @@
       </ul>
 
       <div class='pl-info panel panel-default'>
-        <div class='panel-body'>
-          <h5 class='pl-info__name'>{{playlists.getCurrent().name}}</h5>
-          <div class='pl-update btn btn-warning'>Update this list</div>
+        <div class='panel-heading'>Current Playlist <span class="glyphicon glyphicon-music"></span></div>
+        <div class='panel-body current-pl-body'>
+        <table class='current-pl__stats'>
+          <thead>
+            <tr>
+              <th>Duration</th>
+              <th>Song Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2.6 hours</td>
+              <td>12 songs</td>
+            </tr>
+          </tbody>
+        </table>
+          <div class='current-pl'><img class='current-pl__img' src='{{playlists.getCurrent().songs[0].artwork}}'><h5 class='current-pl__name'>{{playlists.getCurrent().name}}</h5></div>
+<!--           <div class='pl-update btn btn-warning'>Update this list</div> -->
         </div>
       </div>
     </div>
