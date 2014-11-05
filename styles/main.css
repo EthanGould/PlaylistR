@@ -47,6 +47,7 @@
 	float: left;
 }
 .convers-container {
+	position: relative;
 	height: 300px;
 }
 .new-pl__title {
@@ -58,18 +59,32 @@
 }
 .sent-message {
 	position: relative;
-	margin-bottom: 15px;
-	max-height: 50px;
-}
-.song-artwork {
-	position: relative;
-	display: inline-block;
-	max-height: 50px;
-	width: 50px;
+	width: 100%;
+	height: 70px;
+	border-bottom: 1px solid rgba(10, 10, 10, 0.2);
+	padding: 10px;
 }
 .song-info {
-	position: relative;
-	display: inline-block;
-	width: 70%;
-	margin-left: 20px;
+	margin: 0 15px 0 60px;
 }
+.song-artwork {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	max-height: 50px;
+	margin-right: 20px;
+}
+.song-actions {
+	position: absolute;
+	top:0;
+	right:0;
+	padding-left: 20px;
+	background: linear-gradient(to right, rgba(245,245,245,0.3), rgba(245, 245, 245,1));
+}
+.song-details {
+	position: relative;
+	width: 100%;
+	text-align: center;
+	display: none;
+}
+

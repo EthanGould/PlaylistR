@@ -2,7 +2,23 @@
   <div class="panel-body">
     <div class="conversation-container well">
       <div ng-repeat='song in playlists.getCurrent().songs' class='sent-message'>
-        <img ng-controller='PlaylistContentController' ng-click='playSong(song)' ng-src='{{song.artwork}}' class='song-artwork'><p class='song-info'>{{song.artist}} - {{song.title}}</p>
+        <img ng-controller='PlaylistContentController' ng-click='playSong(song)' ng-src='{{song.artwork}}' class='song-artwork'>
+        <p class='song-info'>{{song.artist}} - {{song.title}}</p>
+        <div class='song-actions'><h3><span class="glyphicon glyphicon-th-list"></span></h3></div>
+        <div class='song-details'>
+          <table>
+            <thead>
+              <tr>
+                <th>duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{song.duration}} minutes</td>
+              <tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <!-- <audio src='https://soundcloud.com/zentrix/chris-liebing-pfirter-420-zentrix-remix' controls></audio> -->
     </div>
