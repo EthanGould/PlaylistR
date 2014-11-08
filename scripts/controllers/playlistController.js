@@ -15,25 +15,31 @@ angular.module('Playlistr')
       }
       setTimeout( function(){
         var songDuration = (t.duration/1000)/60;
-        var addDuration = parseFloat(parseFloat(songDuration).toFixed(1));
-        playlist.songs.push({track_id: t.id, artist: t.label_name, title: t.title, duration: songDuration, artwork: artwork, track_uri: t.uri});
+        var songDuration = parseFloat(parseFloat(songDuration).toFixed(1));
+        playlist.songs.push({track_id: t.id, artist: t.label_name, title: t.title, duration: songDuration, artwork: artwork, track_uri: t.uri, download_count: t.download_count, comment_count: t.comment_count, favorite_count: t.favoritings_count});
         playlist.songCount += 1;
-        playlist.duration += addDuration;
-        console.log(playlist.duration);
+        playlist.duration += songDuration;
         $scope.$apply();
       }, 10);
       console.log(t);
     });
     $('.song-input').val('');
   };
+
+  $scope.removeSong = function(song, playlist) {
+    console.log(song, playlist);
+    playlist.songs.splice(playlist.songs.indexOf(song), 1);
+    playlist.duration -= song.duration;
+    playlist.songCount -= 1;
+  }
 }]);
 
-var showDetails = function() {
-  $('.song-details').slideToggle();
+var showDetails = function(song) {
+  song.parents('.sent-message').siblings('.song-extras').slideToggle();
 };
 
 $(document).ready(function(){
   $(document).on('click', '.song-actions', function(){
-    showDetails();
+    showDetails($(this));
   });
 });
