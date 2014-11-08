@@ -57,15 +57,17 @@
 	height: 500px;
 	overflow-y: scroll;
 }
+.sent-message-container {
+	border-bottom: 1px solid rgba(10, 10, 10, 0.2);
+}
 .sent-message {
 	position: relative;
 	width: 100%;
 	height: 70px;
-	border-bottom: 1px solid rgba(10, 10, 10, 0.2);
-	padding: 10px;
+	padding: 10px 10px 0 10px;
 }
 .song-info {
-	margin: 0 15px 0 60px;
+	margin: 0 15px 10px 60px;
 }
 .song-artwork {
 	position: absolute;
@@ -81,10 +83,29 @@
 	padding-left: 20px;
 	background: linear-gradient(to right, rgba(245,245,245,0.3), rgba(245, 245, 245,1));
 }
-.song-details {
+.song-extras {
 	position: relative;
 	width: 100%;
-	text-align: center;
 	display: none;
+	border-top: 1px solid rgba(10, 10, 10, 0.2);
+	padding: 10px;
+	background: rgba(10, 10, 10, 0.1);
+}
+.song-extras table {
+	width: 80%;
+}
+.song-extras td, th {
+	text-align: center;
+}
+.song-extras td {
+	padding: 0 5px;
+}
+.song-extras th {
+	width: 20%;
+}
+.remove-song {
+	position: absolute;
+	top: 15px;
+	right: 15px;
 }
 
