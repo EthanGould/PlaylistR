@@ -1,23 +1,34 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="conversation-container well">
-      <div ng-repeat='song in playlists.getCurrent().songs' class='sent-message'>
-        <img ng-controller='PlaylistContentController' ng-click='playSong(song)' ng-src='{{song.artwork}}' class='song-artwork'>
-        <p class='song-info'>{{song.artist}} - {{song.title}}</p>
-        <div class='song-actions'><h3><span class="glyphicon glyphicon-th-list"></span></h3></div>
-        <div class='song-details'>
+      <div ng-repeat='song in playlists.getCurrent().songs' class='sent-message-container'>
+        <div class='sent-message'>
+          <div class='song-info'>
+            <img ng-controller='PlaylistContentController' ng-click='playSong(song)' ng-src='{{song.artwork}}' class='song-artwork'>
+            <p class='song-info__title'>{{song.artist}} - {{song.title}}</p>
+            <div class='song-actions'><h3><span class="glyphicon glyphicon-th-list"></span></h3></div>
+          </div>
+        </div>
+        <div class='song-extras'>
           <table>
             <thead>
               <tr>
                 <th>duration</th>
+                <th>favorites</th>
+                <th>downloads</th>
+                <th>comments</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>{{song.duration}} minutes</td>
-              <tr>
+                <td>{{song.favorite_count}}</td>
+                <td>{{song.download_count}}</td>
+                <td>{{song.comment_count}}</td>
+              </tr>
             </tbody>
           </table>
+          <div ng-controller='PlaylistContentController' class='remove-song btn btn-danger' ng-click='removeSong(song, playlists.getCurrent())'>remove</div>
         </div>
       </div>
       <!-- <audio src='https://soundcloud.com/zentrix/chris-liebing-pfirter-420-zentrix-remix' controls></audio> -->
