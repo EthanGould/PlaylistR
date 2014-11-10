@@ -1,4 +1,4 @@
-var app = angular.module('Playlistr', ['ngRoute', 'ui.router']);
+var app = angular.module('Playlistr', ['ngRoute', 'ui.router', 'firebase']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
   //
@@ -46,7 +46,6 @@ app.directive('conversation', function(){
     templateUrl: 'scripts/templates/conversation.html'
   };
 });
-
 
 var playlistControllerFactory = {
 
@@ -106,12 +105,25 @@ var playlistControllerFactory = {
 };
 
 
-app.controller('MainController', ['$scope', function($scope) {
+app.controller('MainController', ['$firebase', '$scope', function($firebase, $scope) {
 
   $scope.playlists = playlistControllerFactory.create();
 
+  baseRef = new Firebase('https://playlistrapp.firebaseio.com/');
+  var playlistsRef = baseRef.child('playlists');
+
+  playlistsRef.on("value", function(snapshot){
+    console.log(snapshot.val());
+  }, function(error){
+    console.log("There has been an error: " + error.code);
+  });
+
   for (var i = 0; i < playlistsFromREST.length; i++) {
     $scope.playlists.addPlaylist(playlistsFromREST[i]);
+  }
+
+  $scope.sendPlToFirebase = function(playlist) {
+    playlistsRef.push({name: playlist, songs: []});
   }
 
   $scope.selectPlaylist = function() {

@@ -3,5 +3,5 @@
   		<span class="input-group-addon">Title</span>
   		<input ng-model='playlistName' type="text" class="new-pl-name form-control" placeholder="name your playlist">
 	</div>
-	<div ng-click='createPlaylist(playlistName)' class='btn btn-success pull-right'>Add</div>
+	<div ng-click='createPlaylist(playlistName);sendPlToFirebase(playlistName)' class='btn btn-success pull-right'>Add</div>
 </form>

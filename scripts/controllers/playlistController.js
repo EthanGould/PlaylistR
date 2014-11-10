@@ -1,9 +1,14 @@
 angular.module('Playlistr')
 
-.controller('PlaylistContentController', ['$scope', function($scope) {
+.controller('PlaylistContentController', ['$firebase', '$scope', function($firebase, $scope) {
+
+  var ref = new Firebase('https://playlistrapp.firebaseio.com/');
+  var sync = $firebase(ref);
+  $scope.fbPlaylistSongs = sync.$asArray();
+
   var clientId = '22aa56e479e5b0a4968c22120c32bde8';
   SC.initialize({
-    client_id: clientId
+    client_id: clientId,
   });
 
   $scope.addSong = function(track_url, playlist) {
@@ -16,15 +21,37 @@ angular.module('Playlistr')
       setTimeout( function(){
         var songDuration = (t.duration/1000)/60;
         var songDuration = parseFloat(parseFloat(songDuration).toFixed(1));
-        playlist.songs.push({track_id: t.id, artist: t.label_name, title: t.title, duration: songDuration, artwork: artwork, track_uri: t.uri, download_count: t.download_count, comment_count: t.comment_count, favorite_count: t.favoritings_count});
+        var newSong = {track_id: t.id,
+          artist: t.label_name,
+          title: t.title,
+          duration: songDuration,
+          artwork: artwork,
+          track_uri: t.uri,
+          download_count: t.download_count,
+          comment_count: t.comment_count,
+          favorite_count: t.favoritings_count
+        };
+
+        playlist.songs.push(newSong);
         playlist.songCount += 1;
         playlist.duration += songDuration;
         $scope.$apply();
+        sendSongToPlaylist(newSong);
       }, 10);
       console.log(t);
     });
     $('.song-input').val('');
   };
+
+  var sendSongToPlaylist = function(song) {
+    var ref = new Firebase('https://playlistrapp.firebaseio.com/playlists/-JaGQ1aUkVNPWz0b53jZ/');
+    var songsRef = ref.child('songs');
+    // remove hashkey for Firebase and send
+    delete song['$$hashKey']
+    // songsRef.push(song);
+    // var songID = songsRef.key();
+    // debugger;
+  }
 
   $scope.removeSong = function(song, playlist) {
     console.log(song, playlist);
