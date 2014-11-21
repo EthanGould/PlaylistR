@@ -52,13 +52,13 @@ var playlistControllerFactory = {
   create: function() {
 
     var current = null;
-    var playlists = [];
+    this.playlists = [];
 
     return {
       activate: function(playlist) {
-        for (var i = 0; i < playlists.length; i++) {
+        for (var i = 0; i < this.playlists.length; i++) {
 
-          if (playlists[i] === playlist) {
+          if (this.playlists[i] === playlist) {
             current = playlist;
             console.log('MainCtrl current pl', current);
           }
@@ -66,10 +66,10 @@ var playlistControllerFactory = {
       },
 
       remove: function(playlist) {
-        for (var i = 0; i < playlists.length; i++) {
+        for (var i = 0; i < this.playlists.length; i++) {
 
-          if (playlists[i] === playlist) {
-            playlists.splice(playlists.indexOf(playlist), 1);
+          if (this.playlists[i] === playlist) {
+            this.playlists.splice(this.playlists.indexOf(playlist), 1);
           }
         }
       },
@@ -94,11 +94,11 @@ var playlistControllerFactory = {
         playlist._remove = function(playlist) {
           this.remove(playlist);
         };
-        playlists.unshift(newPlaylist);
+        this.playlists.unshift(newPlaylist);
       },
 
       getPlaylists: function() {
-        return playlists;
+        return this.playlists;
       }
     };
   }
@@ -113,18 +113,25 @@ app.controller('MainController', ['$firebase', '$scope', function($firebase, $sc
   var playlistsRef = baseRef.child('playlists');
 
   playlistsRef.on("value", function(snapshot){
+    console.log('Firebase data change')
     console.log(snapshot.val());
+    var playlistsObj = snapshot.val();
+    $scope.playlists.playlists = [];
+    for (plHash in playlistsObj) {
+      $scope.playlists.addPlaylist(playlistsObj[plHash].name);
+    }
+    $scope.$apply();
   }, function(error){
     console.log("There has been an error: " + error.code);
   });
 
-  for (var i = 0; i < playlistsFromREST.length; i++) {
-    $scope.playlists.addPlaylist(playlistsFromREST[i]);
-  }
-
   $scope.sendPlToFirebase = function(playlist) {
     playlistsRef.push({name: playlist, songs: []});
   }
+
+  // $scope.getPLFromFirebase = function() {
+  //   playlistsRef.$
+  // }
 
   $scope.selectPlaylist = function() {
     console.log("PLAYLIST: ", this);
@@ -135,3 +142,4 @@ app.controller('MainController', ['$firebase', '$scope', function($firebase, $sc
     $('.new-pl-name').val('');
   };
 }]);
+
