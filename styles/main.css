@@ -14,9 +14,14 @@
 }
 .pl-name {
 	margin: 0;
+	display: inline-block;
 }
 .pl-info {
 	text-align: center;
+}
+.pl-delete {
+	float: right;
+	display: none;
 }
 .pl-info__heading {
 	margin: 0;
