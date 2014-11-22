@@ -6,7 +6,6 @@
       <div class='user-info panel panel-default'>
         <div class='promo-header panel-heading'>
         <h5 class='pl-info__heading'>Ethan907</h5>
-<!--           <h5 class='pl-info__heading'>Powered by <span><img style='height:30px;width:50px;padding-left:5px;' src='http://upload.wikimedia.org/wikipedia/fr/b/bb/SoundCloud_logo.png'></span></h5> -->
         </div>
 
         <div class='panel-body'>
@@ -17,7 +16,7 @@
 
       <!-- side nav list of playlist -->
       <ul class='pl-list'>
-        <li class='pl-container panel panel-default' ng-repeat='pl in playlists.getPlaylists()'><a ui-sref='playlist-nav.playlist' ng-click='playlists.activate(pl);playlists.setCurrent(pl)'><h5 class='pl-name'>{{pl.name}}</h5></a><span class="glyphicon glyphicon-trash pl-delete" aria-hidden="true"></span></li>
+        <li class='pl-container panel panel-default' ng-repeat='pl in playlists'><a ui-sref='playlist-nav.playlist' ng-click='plFactory.activate(pl);plFactory.setCurrent(pl)'><h5 class='pl-name'>{{pl.name}}</h5></a><span class="glyphicon glyphicon-trash pl-delete" aria-hidden="true"></span></li>
         <li class='pl-container panel panel-default'><a ui-sref='playlist-nav.new'><h5>New Playlist</h5></a></li>
       </ul>
 
@@ -35,14 +34,13 @@
           </thead>
           <tbody>
             <tr>
-              <td>{{playlists.getCurrent().duration.toFixed(1)}} minutes</td>
-              <td>{{playlists.getCurrent().songCount}} songs</td>
+              <td>{{plFactory.getCurrent().duration.toFixed(1)}} minutes</td>
+              <td>{{plFactory.getCurrent().songCount}} songs</td>
             </tr>
           </tbody>
         </table>
-        <!-- src='{{playlists.getCurrent().songs[0].artwork}} -->
-          <div class='current-pl'><img class='current-pl__img'><h5 class='current-pl__name'>{{playlists.getCurrent().name}}</h5></div>
-<!--           <div class='pl-update btn btn-warning'>Update this list</div> -->
+        <!-- src='{{plFactory.getCurrent().songs[0].artwork}} -->
+          <div class='current-pl'><img class='current-pl__img'><h5 class='current-pl__name'>{{plFactory.getCurrent().name}}</h5></div>
         </div>
       </div>
     </div>
