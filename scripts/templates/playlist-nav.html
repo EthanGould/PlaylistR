@@ -11,6 +11,18 @@
         <div class='panel-body'>
           <h5 class='user-info__name'></h5>
           <img src='https://www.marqueed.com/assets/default_user-9fa815e2c71f8bad4f3643c9546ac4aa.png' class="user-pic" style='position:relative;height:100%; width: 100%;'>
+          <div class='current-pl__stats'>
+            <div class='current-pl__duration pl-stat'>
+              <h4>2.5</h4>
+              <p>minutes</p>
+            </div>
+            <div class='current-pl__song-count pl-stat'>
+              <h4>3</h4>
+              <p>songs</p>
+            </div>
+          </div>
+        <!-- src='{{plFactory.getCurrent().songs[0].artwork}} -->
+          <div class='current-pl'><!-- <img class='current-pl__img'> --><h5 class='current-pl__name'>{{plFactory.getCurrent().name}}</h5></div>
         </div>
       </div>
 
@@ -19,30 +31,6 @@
         <li class='pl-container panel panel-default' ng-repeat='pl in playlists'><a ui-sref='playlist-nav.playlist' ng-click='plFactory.activate(pl);plFactory.setCurrent(pl)'><h5 class='pl-name'>{{pl.name}}</h5></a><span class="glyphicon glyphicon-trash pl-delete" aria-hidden="true"></span></li>
         <li class='pl-container panel panel-default'><a ui-sref='playlist-nav.new'><h5>New Playlist</h5></a></li>
       </ul>
-
-      <div class='pl-info panel panel-default'>
-        <div class='panel-heading'>Current Playlist <span class="glyphicon glyphicon-music"></span></div>
-        <div class='panel-body current-pl-body'>
-        <table class='current-pl__stats'>
-          <thead>
-            <tr>
-            </tr>
-            <tr>
-              <th>Duration</th>
-              <th>Song Count</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{{plFactory.getCurrent().duration.toFixed(1)}} minutes</td>
-              <td>{{plFactory.getCurrent().songCount}} songs</td>
-            </tr>
-          </tbody>
-        </table>
-        <!-- src='{{plFactory.getCurrent().songs[0].artwork}} -->
-          <div class='current-pl'><img class='current-pl__img'><h5 class='current-pl__name'>{{plFactory.getCurrent().name}}</h5></div>
-        </div>
-      </div>
     </div>
 
      <div class='col-sm-9' ui-view>
@@ -50,3 +38,5 @@
     </div>
   </div>
 </div>
+<!-- <td>{{plFactory.getCurrent().duration.toFixed(1)}} minutes</td>
+                <td>{{plFactory.getCurrent().songCount}} songs</td> -->
