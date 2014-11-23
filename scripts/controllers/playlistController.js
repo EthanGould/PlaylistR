@@ -1,9 +1,7 @@
 angular.module('Playlistr')
 
 .controller('PlaylistContentController', ['$firebase', '$scope', function($firebase, $scope) {
-
   var ref = new Firebase('https://playlistrapp.firebaseio.com/');
-
   var clientId = '22aa56e479e5b0a4968c22120c32bde8';
   SC.initialize({
     client_id: clientId,
@@ -42,9 +40,8 @@ angular.module('Playlistr')
   var sendSongToFirebase = function(song, playlist) {
     console.log(playlist.$id)
     var singlePl = $firebase(ref.child('playlists/'+playlist.$id+'/songs')).$asArray();
-    singlePl.$add(song);
+    singlePl.$add(song)
     debugger;
-    console.log('New Song: ',song, 'Added to: ', playlist.name);
   }
 
   $scope.removeSong = function(song, playlist) {

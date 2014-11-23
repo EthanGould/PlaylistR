@@ -59,7 +59,6 @@ var playlistControllerFactory = {
   }
 };
 
-
 app.controller('MainController', ['$firebase', '$scope', function($firebase, $scope) {
 
   $scope.plFactory = playlistControllerFactory.create();
@@ -73,9 +72,8 @@ app.controller('MainController', ['$firebase', '$scope', function($firebase, $sc
   $scope.sendPlToFirebase = function(playlist) {
     playlistsArray.$add({name: playlist})
   }
-  
+
   $scope.selectPlaylist = function() {
     console.log("PLAYLIST: ", this);
   };
 }]);
-
