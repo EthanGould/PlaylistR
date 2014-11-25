@@ -6,6 +6,7 @@ angular.module('Playlistr')
   SC.initialize({
     client_id: clientId,
   });
+  plFactory = playlistControllerFactory.create();
 
   $scope.getSong = function(track_url, playlist) {
     SC.get('/resolve', { url: track_url }, function(t) {
