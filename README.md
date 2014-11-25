@@ -5,4 +5,4 @@ Playlistr is a collaborative playlist creator built with AngularJS and FireBase.
 By inviting friends to contribute to a playlist, the hunt for good music is instantly broadend and you wil be exposed to new types of music through the other contributors of that playlist. All playlist and song data is stored in FireBase
 
 #### SoundCloud
-PlaylistR is integrated with the soundcloud API for easy login (coming soon) and saving your Playlistr collaborations to your soundcloud account. SoundCloud is also used to provide a full featured UI and information on songs within a playlist
+Playlistr is integrated with the soundcloud API for easy login (coming soon) and saving your Playlistr collaborations to your soundcloud account. SoundCloud is also used to provide a full featured UI and information on songs within a playlist
