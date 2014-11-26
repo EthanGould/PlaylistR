@@ -1,8 +1,10 @@
 angular.module('Playlistr')
 
-.controller('PlaylistContentController', ['$firebase', '$scope', function($firebase, $scope) {
+.controller('PlaylistContentController', ['PlaylistData', '$firebase', '$scope', function(PlaylistData, $firebase, $scope) {
   var ref = new Firebase('https://playlistrapp.firebaseio.com/');
   var clientId = '22aa56e479e5b0a4968c22120c32bde8';
+  var plData = PlaylistData;
+
   SC.initialize({
     client_id: clientId,
   });
@@ -14,6 +16,7 @@ angular.module('Playlistr')
       if (t.artwork_url === null) {
         artwork = defaultArtwork;
       }
+      var currentPl = plData.getCurrent();
       var songDuration = (t.duration/1000)/60;
       var songDuration = parseFloat(parseFloat(songDuration).toFixed(1));
       var newSong = {track_id: t.id,
@@ -26,13 +29,12 @@ angular.module('Playlistr')
         comment_count: t.comment_count,
         favorite_count: t.favoritings_count
       };
-
       // playlist.songs.push(newSong);
       // playlist.songCount += 1;
       // playlist.duration += songDuration;
       // $scope.$apply();
       // sendSongToFirebase(newSong);
-      sendSongToFirebase(newSong,playlist);
+      sendSongToFirebase(newSong,currentPl);
     });
     $('.song-input').val('');
   };
@@ -40,8 +42,7 @@ angular.module('Playlistr')
   var sendSongToFirebase = function(song, playlist) {
     console.log(playlist.$id)
     var singlePl = $firebase(ref.child('playlists/'+playlist.$id+'/songs')).$asArray();
-    singlePl.$add(song)
-    debugger;
+    singlePl.$add(song);
   }
 
   $scope.removeSong = function(song, playlist) {
