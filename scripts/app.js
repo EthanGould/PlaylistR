@@ -25,55 +25,58 @@ app.directive('conversation', function(){
   };
 });
 
-var playlistControllerFactory = {
 
-  create: function() {
+app.factory('PlaylistData',['$firebase', function($firebase) {
 
-    var current = null;
-    this.playlists = [];
+    var baseRef = new Firebase('https://playlistrapp.firebaseio.com/');
+    var playlistsArray = $firebase(baseRef.child('playlists/')).$asArray();
 
-    return {
+    var playlists = playlistsArray;
+    console.log(playlists);
+    
+  return {
 
-      remove: function(playlist) {
-        for (var i = 0; i < this.playlists.length; i++) {
+    create: function(plName) {
+      playlistsArray.$add({name: plName});
+      alert('created new Playlist: ', plName);
+    },
 
-          if (this.playlists[i] === playlist) {
-            this.playlists.splice(this.playlists.indexOf(playlist), 1);
-          }
-        }
-      },
+    setCurrent: function(playlist) {
+      current = playlist;
+      return playlist;
+    },
 
-      setCurrent: function(playlist) {
-        console.log("SET CURRENT ", playlist);
-        current = playlist;
-      },
+    getCurrent: function() {
+      return setCurrent.current;
+    },
 
-      getCurrent: function() {
-        return current;
-      },
-
-      getPlaylists: function() {
-        return this.playlists;
-      }
-    };
+    getPlaylists: function() {
+      return playlists;
+    }
   }
-};
+}]);
 
-app.controller('MainController', ['$firebase', '$scope', function($firebase, $scope) {
+app.controller('MainController', ['PlaylistData', '$firebase', '$scope', function(PlaylistData, $firebase, $scope) {
 
-  $scope.plFactory = playlistControllerFactory.create();
-
-  var baseRef = new Firebase('https://playlistrapp.firebaseio.com/');
-  var playlistsArray = $firebase(baseRef.child('playlists/')).$asArray();
-
-  $scope.playlists = playlistsArray;
+  plData = PlaylistData;
+  $scope.playlists = plData.getPlaylists();
   console.log($scope.playlists);
 
-  $scope.sendPlToFirebase = function(playlist) {
-    playlistsArray.$add({name: playlist})
+  $scope.currentPlaylist = plData.setCurrent();
+
+  this.createNewPl = function(name) {
+    plData.create(name);
+    $('.new-pl-name').val('');
   }
 
-  $scope.selectPlaylist = function() {
-    console.log("PLAYLIST: ", this);
+  $scope.setPlaylist = function($el) {
+    console.log("Set current PLAYLIST: ", $el);
+    console.log($scope.currentPlaylist);
   };
 }]);
+
+
+
+
+
+
