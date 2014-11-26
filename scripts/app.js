@@ -28,12 +28,12 @@ app.directive('conversation', function(){
 
 app.factory('PlaylistData',['$firebase', function($firebase) {
 
-    var baseRef = new Firebase('https://playlistrapp.firebaseio.com/');
-    var playlistsArray = $firebase(baseRef.child('playlists/')).$asArray();
+  var baseRef = new Firebase('https://playlistrapp.firebaseio.com/');
+  var playlistsArray = $firebase(baseRef.child('playlists/')).$asArray();
 
-    var playlists = playlistsArray;
-    console.log(playlists);
-    
+  var playlists = playlistsArray;
+  var current;
+
   return {
 
     create: function(plName) {
@@ -42,36 +42,37 @@ app.factory('PlaylistData',['$firebase', function($firebase) {
     },
 
     setCurrent: function(playlist) {
+      debugger;
       current = playlist;
       return playlist;
     },
 
     getCurrent: function() {
-      return setCurrent.current;
+      return current;
     },
 
     getPlaylists: function() {
       return playlists;
     }
-  }
+  };
 }]);
 
 app.controller('MainController', ['PlaylistData', '$firebase', '$scope', function(PlaylistData, $firebase, $scope) {
 
-  plData = PlaylistData;
+  var plData = PlaylistData;
   $scope.playlists = plData.getPlaylists();
   console.log($scope.playlists);
 
   $scope.currentPlaylist = plData.setCurrent();
 
-  this.createNewPl = function(name) {
+  $scope.createNewPl = function(name) {
     plData.create(name);
     $('.new-pl-name').val('');
-  }
+  };
 
   $scope.setPlaylist = function($el) {
     console.log("Set current PLAYLIST: ", $el);
-    console.log($scope.currentPlaylist);
+    plData.setCurrent($el);
   };
 }]);
 
