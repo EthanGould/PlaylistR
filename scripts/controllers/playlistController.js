@@ -43,6 +43,19 @@ angular.module('Playlistr')
     console.log(playlist.$id)
     var singlePl = $firebase(ref.child('playlists/'+playlist.$id+'/songs')).$asArray();
     singlePl.$add(song);
+    updatePlStats(playlist);
+  }
+
+  var updatePlStats = function(playlist) {
+    var singlePl = $firebase(ref.child('playlists/'+playlist.$id)).$asArray();
+    // for (var song in singlePl.songs)
+    var stats = ['duration', 'download_count', 'comment_count', 'favorite_count'];
+    for (var songObj in playlist.songs) {
+      for (var i = 0; i < stats.length; i++) {
+        console.log(playlist.songs[songObj]);
+      }
+    }
+    debugger;
   }
 
   $scope.removeSong = function(song, playlist) {

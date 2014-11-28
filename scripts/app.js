@@ -42,7 +42,6 @@ app.factory('PlaylistData',['$firebase', function($firebase) {
     },
 
     setCurrent: function(playlist) {
-      debugger;
       current = playlist;
       return playlist;
     },
